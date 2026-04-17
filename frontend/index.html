@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Wallet</title>
+</head>
+<body>
+    <h1>Digital Wallet</h1>
+    <button onclick="getBalance()">Check Balance</button>
+    <button onclick="addMoney()">Add 100</button>
+
+    <p id="result"></p>
+
+    <script>
+        function getBalance() {
+            fetch('http://localhost:8080/api/wallet/balance')
+                .then(res => res.text())
+                .then(data => document.getElementById('result').innerText = data);
+        }
+
+        function addMoney() {
+            fetch('http://localhost:8080/api/wallet/add?amount=100', { method: 'POST' })
+                .then(res => res.text())
+                .then(data => document.getElementById('result').innerText = data);
+        }
+    </script>
+</body>
+</html>
